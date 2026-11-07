@@ -1,3 +1,7 @@
+/* Inside the Model. Wrapped in a function so its names stay apart from the article's;
+   parts.js calls it the first time the tab is shown, and calls the returned update() on later visits. */
+window.startModel = function () {
+const DATA = window.MODEL_DATA;
 const N = DATA.nodes, S = DATA.S, FLAGS = DATA.flags;
 const CAPEXWIDE = new Set(['TSM', 'SKH', 'MU', 'SSNLF', 'INTC', 'SNDK', 'WDC']);
 const EQUIP = new Set(['Chips', 'Memory', 'Systems', 'Power', 'Foundry & tools']);
@@ -246,3 +250,5 @@ document.getElementById('copyjson').onclick = async () => { try { await navigato
 renderModes(); renderModeCtl(); renderFb(); renderAssume(); update(); tables();
 
 addEventListener('resize', () => { clearTimeout(window._rz); window._rz = setTimeout(update, 150); });
+return update;
+};
